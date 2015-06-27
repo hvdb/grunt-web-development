@@ -1,1 +1,1 @@
-# grunt-angularjs-development
+# grunt-web-development
