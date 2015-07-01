@@ -37,6 +37,9 @@ module.exports = function () {
 };
 ```
 
+You can set a seleniumaddress, this can be a grid or a local running webdriver-manager.  
+FQN, the fully qualified name of your machine. This is used so that you can remotely access your machine.  
+
 Add the folowing ot your index.html:
 
 ```
@@ -60,7 +63,7 @@ Add the folowing ot your index.html:
 
 ##Available grunt options:
 
-start with grunt *option*
+start with grunt (and then one of this:)
 
 gwd-serve-dist  
 gwd-test-dist  
@@ -70,10 +73,30 @@ gwd-serve-dev
 
 ##What does it do?
 
+You can remove any html script include.  
+It will include it for you.  
+(make sure you add the fileblocks)  
+
 dist:  
 
-Minifiy ngannotate, etc.  
-and test karma and protractor.  
+concat, Minifiy ngannotate, etc.  
+test: run tests karma and protractor.  
 
 dev:  
-Local files.
+Serve local files, don't concat etc.
+
+test: Run karma and protractor.
+
+
+
+##TODO
+
+Protractor coverage
+direct browser options.
+Option to provide/override protractor.
+screenshots and save them.
+more?
+
+
+More configuration options. /app is now hard etc.
+automatic include karma files.
