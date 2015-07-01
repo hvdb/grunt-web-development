@@ -12,6 +12,7 @@ module.exports = function (config) {
     files = files.concat([
         'bower_components/jquery/jquery.js',
         'bower_components/angular/*.min.js',
+        'bower_components/angular-mocks/*.js',
         'bower_components/**/*.min.js',
         'test/mocks/**/*.js', // all mock data.
         'app/js/*.js', // contains the angular.module('name', [deps]) which is required before using it.

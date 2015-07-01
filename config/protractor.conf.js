@@ -24,7 +24,7 @@ exports.config = {
         browser.getCapabilities().then(function (caps) {
             browser.params.browser = caps.get('browserName');
 
-            var directory =  + '.tmp/results/protractor/' + browser.params.browser;
+            var directory =  path.resolve('.tmp/results/protractor/' + browser.params.browser);
             mkdirp(directory, function (err) {
                 if (err) {
                     throw new Error('Could not create directory ' + directory);

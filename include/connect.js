@@ -17,7 +17,8 @@ module.exports = function (grunt, options) {
                     var paths = grunt.config.get('paths');
                     return [
                         connect().use('/', connect.static(paths.dist)),
-                        connect().use('/mocks', connect.static(paths.base+'/test/mocks'))
+                        connect().use('/mocks', connect.static(paths.base+'/test/mocks')).
+                        connect().use('/', connect.static(paths.base+'/test/protractor'))
                     ];
                 }
             }
@@ -28,10 +29,11 @@ module.exports = function (grunt, options) {
                 middleware: function (connect) {
                     var config = grunt.config.get('config');
                     return [
-                        // connect().use('/lib', connect.static('<%= paths.base %>/lib'),
-                        // //connect().use('/js', connect.static(config.paths.instrumented + '/' + config.paths.src + '/js')),
-                        // connect().use('/', connect.static(config.paths.src)),
-                        // connect().use('/', connect.static(config.paths.test + '/protractor'))
+                        connect().use('/', connect.static(paths.dist)),
+                        connect().use('/mocks', connect.static(paths.base+'/test/mocks')),
+                        connect().use('/', connect.static(paths.base+'/test/protractor')),
+                        connect().use('/js', connect.static(config.paths.instrumented + '/' + config.paths.src + '/js')),
+                        connect().use('/lib', connect.static('paths.base/bower_components'),
                     ];
                 }
             }

@@ -7,7 +7,7 @@ module.exports = function (grunt) {
         },
         module: {
             files: {
-                '<%= paths.dist %>/js/app.min.js': '<%= paths.dist %>/js/app.min.js'
+                '<%= paths.tmp %>/concat/js/app.min.js': '<%= paths.tmp %>/concat/js/app.min.js'
             }
         }
     };

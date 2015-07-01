@@ -9,7 +9,7 @@ module.exports = function () {
                 dest: '<%= paths.dist %>/index.html',
                 blocks: {
                     app: {
-                        src: '<%= paths.base %>/app/js/**/*.js'
+                        src: ['<%= paths.base %>/app/js/*.js', '<%= paths.base %>/app/js/**/*.js']
                     },
                     angular: {
                         src: ['<%= paths.bowerComponentsDirectory %>/angular/*.min.js',  '<%= paths.bowerComponentsDirectory %>/angular-*/*.min.js'] 
@@ -19,6 +19,9 @@ module.exports = function () {
                     },
                     deps: {
                         src: ['<%= paths.bowerComponentsDirectory %>/**/*.min.js', '!<%= paths.bowerComponentsDirectory %>/jquery/jquery.min.js', '!<%= paths.bowerComponentsDirectory %>/angular*/*.min.js']
+                    },
+                    mocks: {
+                       src: ['<%= paths.base %>/test/mocks/*.js', '<%= paths.base %>/test/mocks/**/*.js']
                     }
                 }
             }
