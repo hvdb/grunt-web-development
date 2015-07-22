@@ -43,22 +43,33 @@ FQN, the fully qualified name of your machine. This is used so that you can remo
 Add the folowing ot your index.html:
 
 ```
-		<!-- build:js js/lib/jquery.min.js -->
-		<!-- fileblock:js jquery -->
-		<!-- endfileblock -->
-		<!-- endbuild -->
-		<!-- build:js js/lib/angular.min.js -->
-		<!-- fileblock:js angular -->
-		<!-- endfileblock -->
-		<!-- endbuild -->
-		<!-- build:js js/lib/deps.min.js -->
-		<!-- fileblock:js deps -->
-		<!-- endfileblock -->
-		<!-- endbuild -->
-		<!-- build:js js/app.min.js -->
-		<!-- fileblock:js app -->
-		<!-- endfileblock -->
-		<!-- endbuild -->
+		  <!-- build:css  css/the-guide-styles-responsive.min.css-->
+        <!-- fileblock:css theGuideStyles -->
+        <!-- endfileblock -->
+        <!-- endbuild -->
+        
+        <!-- build:js js/lib/jquery.min.js -->
+        <!-- fileblock:js jquery -->
+        <!-- endfileblock -->
+        <!-- endbuild -->
+        <!-- build:js js/lib/angular.min.js -->
+        <!-- fileblock:js angular -->
+        <!-- endfileblock -->
+        <!-- endbuild -->
+        <!-- build:js js/lib/deps.min.js -->
+        <!-- fileblock:js deps -->
+        <!-- endfileblock -->
+        <!-- endbuild -->
+        
+        <!-- build:js js/app.min.js -->
+        <!-- fileblock:js app -->
+        <!-- endfileblock -->
+        <!-- endbuild -->
+        
+        <!-- build:js js/mocks.min.js -->
+        <!-- fileblock:js mocks -->
+        <!-- endfileblock -->
+        <!-- endbuild -->
 ```
 
 ##Available grunt options:

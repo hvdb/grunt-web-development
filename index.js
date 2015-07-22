@@ -11,7 +11,9 @@ function GruntWebDevelopment(grunt) {
         'clean',
         'bower-install-simple',
         'fileblocks:gruntWebDevelopment',
-        'copy:appRunFiles'
+        'copy:appRunFiles',
+        'copy:img',
+        'copy:theGuideStyles'
     ];
 
     var prepareTests = [
@@ -25,7 +27,7 @@ function GruntWebDevelopment(grunt) {
         'concat:generated',
         'ngAnnotate',
         
-    //'cssmin:generated',
+        'cssmin:generated',
         'uglify:generated',
 
         'filerev:gruntWebDevelopment',

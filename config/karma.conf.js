@@ -16,6 +16,7 @@ module.exports = function (config) {
         'bower_components/**/*.min.js',
         'test/mocks/**/*.js', // all mock data.
         'app/js/*.js', // contains the angular.module('name', [deps]) which is required before using it.
+        'app/js/**/*.module.js', // contains the angular.module('name', [deps]) which is required before using it.
         'app/js/**/*.js', // all other js files.
         'test/unit/lib/**/*.js', // all utility stuff.
         'test/unit/*.js', // all the tests.
