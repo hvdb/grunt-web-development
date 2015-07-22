@@ -15,16 +15,16 @@ module.exports = function (config) {
         'bower_components/angular-mocks/*.js',
         'bower_components/**/*.min.js',
         'test/mocks/**/*.js', // all mock data.
-        'app/js/*.js', // contains the angular.module('name', [deps]) which is required before using it.
-        'app/js/**/*.module.js', // contains the angular.module('name', [deps]) which is required before using it.
-        'app/js/**/*.js', // all other js files.
+        'app/*.js', // contains the angular.module('name', [deps]) which is required before using it.
+        'app/**/*.module.js', // contains the angular.module('name', [deps]) which is required before using it.
+        'app/**/*.js', // all other js files.
         'test/unit/lib/**/*.js', // all utility stuff.
         'test/unit/*.js', // all the tests.
         'test/unit/**/*.js' // all the tests.
     ]);
 
     config.set({
-            basePath: paths.base,
+
             frameworks: ['jasmine'],
             files: files,
             exclude: [
@@ -38,12 +38,9 @@ module.exports = function (config) {
                 'karma-phantomjs-launcher',
                 'karma-ng-html2js-preprocessor'
             ],
-            preprocessors: {
-                'app/**/*.html': 'html2js',
-                'app/**/*.js': 'coverage'
-            },
             ngHtml2JsPreprocessor: {
-                stripPrefix: 'src/'
+                stripPrefix: 'src/',
+                moduleName: 'templates'
             },
             reporters: ['progress', 'coverage', 'junit'],
             junitReporter: {
