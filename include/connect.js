@@ -28,7 +28,8 @@ module.exports = function (grunt, options) {
         dev: {
             options: {
                 open: false,
-                keepalive:false,
+                keepalive: false,
+                livereload: true,
                 middleware: function (connect) {
                     var paths = grunt.config.get('paths');
                     return [
@@ -38,6 +39,23 @@ module.exports = function (grunt, options) {
                         connect().use('/', connect.static(paths.base + '/test/protractor')),
                         connect().use('/' + sourceDirectory, connect.static(paths.tmp + '/instrumented/' + appDirectory + '/' + sourceDirectory)),
                         connect().use('/bower_components', connect.static(paths.bowerComponentsDirectory))
+                    ];
+                }
+            }
+        },
+        devWithoutFileblock: {
+            options: {
+                open: true,
+                keepalive: true,
+                livereload: true,
+                middleware: function (connect) {
+                    var paths = grunt.config.get('paths');
+                    return [
+                        connect().use('/', connect.static(paths.base + '/' + appDirectory)),
+                        connect().use('/mocks', connect.static(paths.base + '/test/mocks')),
+                        connect().use('/', connect.static(paths.base + '/test/protractor')),
+                        connect().use('/' + sourceDirectory, connect.static(paths.tmp + '/instrumented/' + appDirectory + '/' + sourceDirectory)),
+                        connect().use('/lib', connect.static(paths.bowerComponentsDirectory))
                     ];
                 }
             }

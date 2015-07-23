@@ -60,6 +60,12 @@ function GruntWebDevelopment(grunt) {
         'connect:dev'
     ];
 
+
+    var serveDirect = [
+        'portPick',
+        'connect:devWithoutFileblock'
+    ];
+
     var postBuildLocalTests = [
         'instrument',
         'protractor_coverage',
@@ -76,12 +82,14 @@ function GruntWebDevelopment(grunt) {
 
     var testAgainstLocalFiles = [].concat(setupTasks, setupTaskDev, prepareTests, localServeTest, postBuildLocalTests);
     var serveLocalFiles = [].concat(setupTasks, setupTaskDev, serveLocal);
+    var serveDirectFiles = [].concat(setupTasks, serveDirect)
 
     //Build all and run tests.
     grunt.registerTask('gwd-test-dist', testAgainstDistFiles);
     grunt.registerTask('gwd-serve-dist', serveDistFiles);
     grunt.registerTask('gwd-serve-dev', serveLocalFiles);
     grunt.registerTask('gwd-test-dev', testAgainstLocalFiles);
+    grunt.registerTask('gwd-serve-direct', serveDirectFiles)
 
     return {
         configure: function (options) {
