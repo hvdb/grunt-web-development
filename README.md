@@ -41,9 +41,11 @@ You can set a seleniumaddress, this can be a grid or a local running webdriver-m
 FQN, the fully qualified name of your machine. This is used so that you can remotely access your machine.  
 
 Add the folowing ot your index.html:
-
+Only if you want to use it without the build!
+Currently the build is not support this.
+When you want to test/serve based on the build structure run the direct command!!
 ```
-		  <!-- build:css  css/the-guide-styles-responsive.min.css-->
+		<!-- build:css  css/the-guide-styles-responsive.min.css-->
         <!-- fileblock:css theGuideStyles -->
         <!-- endfileblock -->
         <!-- endbuild -->
@@ -79,7 +81,9 @@ start with grunt (and then one of this:)
 gwd-serve-dist  
 gwd-test-dist  
 gwd-test-dev  
-gwd-serve-dev  
+gwd-serve-dev 
+gwd-serve-direct
+gwd-test-direct
 
 
 ##What does it do?

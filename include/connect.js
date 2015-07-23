@@ -45,8 +45,8 @@ module.exports = function (grunt, options) {
         },
         devWithoutFileblock: {
             options: {
-                open: true,
-                keepalive: true,
+                open: false,
+                keepalive: false,
                 livereload: true,
                 middleware: function (connect) {
                     var paths = grunt.config.get('paths');

@@ -13,7 +13,7 @@ exports.config = {
         {
             'browserName': 'chrome',
             shardTestFiles: true,
-            maxInstances: 10
+            maxInstances: 5
         }
     ],
 
