@@ -55,8 +55,8 @@ function GruntWebDevelopment(grunt) {
 
     var postBuildLocalTests = [
         'instrument',
-        'protactor_coverage',
-        'make_report'
+        'protractor_coverage',
+        'makeReport'
     ]
     
     var serveLocal = [

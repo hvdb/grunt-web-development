@@ -22,16 +22,16 @@ module.exports = function (grunt, options) {
         appDirectory + '/**/*.module.js', // contains the angular.module('name', [deps]) which is required before using it.
         appDirectory + '/*.js', // contains the angular.module('name', [deps]) which is required before using it.
         appDirectory + '/**/*.js', // all other js files.
-          appDirectory + '/**/*.html',
+        appDirectory + '/**/*.html',
         'test/unit/lib/**/*.js', // all utility stuff.
         'test/unit/*.js', // all the tests.
         'test/unit/**/*.js' // all the tests.
     ]);
-    
-    var sourceDirHtml = appDirectory + '/' +sourceDirectory + '/**/*.html';
-    var sourceDirJs = appDirectory + '/' +sourceDirectory+ '/app/**/*.js';
-    
-    var preprocessors ={};
+
+    var sourceDirHtml = appDirectory + '/' + sourceDirectory + '/**/*.html';
+    var sourceDirJs = appDirectory + '/' + sourceDirectory + '/app/**/*.js';
+
+    var preprocessors = {};
     preprocessors[sourceDirHtml] = 'html2js'
     preprocessors[sourceDirJs] = 'coverage'
 
