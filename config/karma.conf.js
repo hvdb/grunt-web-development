@@ -3,30 +3,10 @@ var path = require('path');
 
 module.exports = function (config) {
     
-    var paths = grunt.config.get('paths');
-    
-    // construct all files needed for running the tests.
-    // 1. add dependencies
-    // 2. add the sources and test
-    var files = [];
-    files = files.concat([
-        'bower_components/jquery/jquery.js',
-        'bower_components/angular/*.min.js',
-        'bower_components/angular-mocks/*.js',
-        'bower_components/**/*.min.js',
-        'test/mocks/**/*.js', // all mock data.
-        'app/*.js', // contains the angular.module('name', [deps]) which is required before using it.
-        'app/**/*.module.js', // contains the angular.module('name', [deps]) which is required before using it.
-        'app/**/*.js', // all other js files.
-        'test/unit/lib/**/*.js', // all utility stuff.
-        'test/unit/*.js', // all the tests.
-        'test/unit/**/*.js' // all the tests.
-    ]);
-
     config.set({
 
             frameworks: ['jasmine'],
-            files: files,
+            
             exclude: [
                 'app/js/**/generated/**/*.js', // assume that generated javascript will be placed in a directory named generated.
                 'app/partials**/generated/**/*.html' // assume that generated partials will be placed in a directory named generated.

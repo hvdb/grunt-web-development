@@ -40,6 +40,29 @@ module.exports = function () {
 You can set a seleniumaddress, this can be a grid or a local running webdriver-manager.  
 FQN, the fully qualified name of your machine. This is used so that you can remotely access your machine.  
 
+
+##Available grunt options:
+
+start with grunt (and then one of this:)
+
+gwd-serve-direct
+gwd-test-direct
+
+
+##What does it do?
+
+serve: serve the files in the same way as the build does it.  
+Test: Test the same way as the build does it.  
+
+
+
+
+
+
+#The following is not yet recommended!
+---
+
+
 Add the folowing ot your index.html:
 Only if you want to use it without the build!
 Currently the build is not support this.
@@ -74,44 +97,16 @@ When you want to test/serve based on the build structure run the direct command!
         <!-- endbuild -->
 ```
 
-##Available grunt options:
-
-start with grunt (and then one of this:)
-
+## Then you can use the following commands:  
 gwd-serve-dist  
 gwd-test-dist  
 gwd-test-dev  
 gwd-serve-dev 
-gwd-serve-direct
-gwd-test-direct
-
-
-##What does it do?
-
-You can remove any html script include.  
-It will include it for you.  
-(make sure you add the fileblocks)  
-
-dist:  
-
-concat, Minifiy ngannotate, etc.  
-test: run tests karma and protractor.  
-
-dev:  
-Serve local files, don't concat etc.
-
-test: Run karma and protractor.
-
 
 
 ##TODO
 
-Protractor coverage
 direct browser options.
 Option to provide/override protractor.
-screenshots and save them.
-more?
-
-
-More configuration options. /app is now hard etc.
+livereload
 automatic include karma files.

@@ -43,7 +43,7 @@ module.exports = function (grunt, options) {
                 }
             }
         },
-        devWithoutFileblock: {
+        direct: {
             options: {
                 open: false,
                 keepalive: false,

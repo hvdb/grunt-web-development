@@ -63,13 +63,13 @@ function GruntWebDevelopment(grunt) {
 
     var serveDirect = [
         'portPick',
-        'connect:devWithoutFileblock:keepalive:open'
+        'connect:direct:keepalive:open'
     ];
 
 
     var serveDirectTest = [
         'portPick',
-        'connect:devWithoutFileblock'
+        'connect:direct'
     ];
 
     var postBuildLocalTests = [
@@ -97,6 +97,7 @@ function GruntWebDevelopment(grunt) {
     grunt.registerTask('gwd-serve-dev', serveLocalFiles);
     grunt.registerTask('gwd-test-dev', testAgainstLocalFiles);
     grunt.registerTask('gwd-serve-direct', serveDirectFiles)
+    grunt.registerTask('gwd-test-direct', testDirectFiles)
 
     return {
         configure: function (options) {
