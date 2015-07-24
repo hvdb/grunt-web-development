@@ -21,7 +21,7 @@ module.exports = function (grunt, options) {
                 resultsDir: '<%= paths.tmp %>/results/protractor',
                 baseUrl: 'http://'+_options.fqn+':<%= connect.options.port %>/',
                 specs: [
-                    '<%= paths.test %>/protractor/**/*Spec.js'
+                    '<%= paths.test %>/protractor/**/*spec.js'
                 ]
             }
         },
