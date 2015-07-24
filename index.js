@@ -63,7 +63,8 @@ function GruntWebDevelopment(grunt) {
 
     var serveDirect = [
         'portPick',
-        'connect:direct:keepalive:open'
+        'connect:direct',
+        'watch'
     ];
 
 
@@ -80,11 +81,12 @@ function GruntWebDevelopment(grunt) {
 
     var serveLocal = [
         'portPick',
-        'connect:dev:keepalive:open'
+        'connect:dev:keepalive:open',
+        'watch'
     ]
 
-    var testAgainstDistFiles = [].concat(setupTasks, setupTaskDist, prepareTests, usemin, distTest, postBuildTests);
-    var serveDistFiles = [].concat(setupTasks, setupTaskDist, usemin, serveDist);
+    var testAgainstNwDistFiles = [].concat(setupTasks, setupTaskDist, prepareTests, usemin, distTest, postBuildTests);
+    var serveDistNwFiles = [].concat(setupTasks, setupTaskDist, usemin, serveDist);
 
     var testAgainstLocalFiles = [].concat(setupTasks, setupTaskDev, prepareTests, localServeTest, postBuildLocalTests);
     var serveLocalFiles = [].concat(setupTasks, setupTaskDev, serveLocal);
@@ -96,8 +98,8 @@ function GruntWebDevelopment(grunt) {
     var serveDistFiles = [].concat(setupTasks, usemin, serveDist);
 
     //Build all and run tests.
-    grunt.registerTask('gwd-test-nw-dist', testAgainstDistFiles);
-    grunt.registerTask('gwd-serve-nw-dist', serveDistFiles);
+    grunt.registerTask('gwd-test-nw-dist', testAgainstNwDistFiles);
+    grunt.registerTask('gwd-serve-nw-dist', serveDistNwFiles);
     
     grunt.registerTask('gwd-serve-nw', serveLocalFiles);
     grunt.registerTask('gwd-test-nw', testAgainstLocalFiles);
