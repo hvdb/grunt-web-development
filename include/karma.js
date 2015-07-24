@@ -8,6 +8,12 @@ module.exports = function (grunt, options) {
     var path = require('path');
     
     
+    var htmlPath;
+    if (_options.srcDirectory) {
+        htmlPath = appDirectory + '/' + _options.srcDirectory;
+    } else {
+        htmlPath = appDirectory + '/partials'
+    }
     // construct all files needed for running the tests.
     // 1. add dependencies
     // 2. add the sources and test
@@ -28,7 +34,7 @@ module.exports = function (grunt, options) {
         'test/unit/**/*.js' // all the tests.
     ]);
 
-    var sourceDirHtml = appDirectory + '/' + sourceDirectory + '/**/*.html';
+    var sourceDirHtml = htmlPath +'/**/*.html';
     var sourceDirJs = appDirectory + '/' + sourceDirectory + '/app/**/*.js';
 
     var preprocessors = {};

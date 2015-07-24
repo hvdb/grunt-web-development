@@ -58,8 +58,38 @@ start with grunt (and then one of these:)
 gwd-serve //Serve local js files  
 gwd-test //Test against local js files  
 
+You can also package all files.
+Please do the following:
+
 gwd-serve-dist //Serve the files after concat, ngminify, ngannotate etc.  
 gwd-test-dist //Concat/ngminify etc and then test.  
+
+Change your html to have the following:
+Put the <!-- build --> tags around the script includes.
+```
+<!-- build:css  css/the-guide-styles-responsive.min.css-->
+        //Put css script includes
+        <!-- endbuild -->
+        
+        <!-- build:js js/lib/jquery.min.js -->
+        //Put jquery script include here
+        <!-- endbuild -->
+        <!-- build:js js/lib/angular.min.js -->
+        //put angular script includes here
+        <!-- endbuild -->
+        <!-- build:js js/lib/deps.min.js -->
+        //Put all other dependencies here.
+        <!-- endbuild -->
+        
+        <!-- build:js js/app.min.js -->
+        //Put all your app js files here.
+        <!-- endbuild -->
+        
+        <!-- build:js js/mocks.min.js -->
+        //All mocks go here.
+        <!-- endbuild -->
+```
+
 
 ##What does it do?
 
