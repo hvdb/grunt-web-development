@@ -16,7 +16,7 @@ module.exports = function (grunt, options) {
         'bower_components/jquery/jquery.js',
         'bower_components/angular/*.min.js',
         'bower_components/angular-mocks/*.js',
-        'bower_components/**/*.min.js',
+        'bower_components/angular-*/*.min.js',
         'test/mocks/**/*.js', // all mock data.
         appDirectory + '/*.module.js', // contains the angular.module('name', [deps]) which is required before using it.
         appDirectory + '/**/*.module.js', // contains the angular.module('name', [deps]) which is required before using it.
