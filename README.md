@@ -31,36 +31,44 @@ module.exports = function () {
     return {
         gwd: {
             fqn: 'localhost',
-            seleniumAddress: 'http://localhost:4444/wd/hub'
+            seleniumAddress: 'http://localhost:4444/wd/hub', //Only needed if directConnect === false.
+            appDirectory: 'app', //Optional, only needed if you defer from the default which is app.
+            sourceDirectory: 'js', //Optional, only needed if you defer from the default which is js.
+            directConnect: true //If set to true, directConnect will be used by protractor. No seleniumserver is needed
         }
     };
 };
 ```
 
-You can set a seleniumaddress, this can be a grid or a local running webdriver-manager.  
+You can set a seleniumaddress, this can be a grid or a local running webdriver-manager start.  
 FQN, the fully qualified name of your machine. This is used so that you can remotely access your machine.  
 
+If you want to use the 'john papa' style.  
+You need to provide two extra parameters:  
+appDirectory: Name of the root directory where the application lives in. This should have the value: 'src'  
+sourceDirectory: Name of the directory where the sources live in. For new style this is 'app'  
 
 ##Available grunt options:
 
-start with grunt (and then one of this:)
+start with grunt (and then one of these:)
 
-gwd-serve-direct
-gwd-test-direct
+gwd-serve-direct //Serve local js files  
+gwd-test-direct //Test against local js files  
 
+gwd-serve-direct-dist //Serve the files after concat, ngminify, ngannotate etc.  
+gwd-test-direct-dist //Concat/ngminify etc and then test.  
 
 ##What does it do?
 
 serve: serve the files in the same way as the build does it.  
 Test: Test the same way as the build does it.  
 
-
-
-
-
+It will run karma and protractor tests.
 
 #The following is not yet recommended!
 ---
+This helps you with making the script includes.
+You don't need to insert them again.
 
 
 Add the folowing ot your index.html:
@@ -109,4 +117,5 @@ gwd-serve-dev
 direct browser options.
 Option to provide/override protractor.
 livereload
-automatic include karma files.
+
+Fixes in the loading of karma files. Those are now hard.

@@ -5,7 +5,7 @@ module.exports = function (grunt, options) {
     var path = require('path');
     var _options = options.gwd || {};
     
-    if(!_options ||!_options.seleniumAddress || !_options.fqn) {
+    if( !_options.directConnect && (!_options ||  !_options.seleniumAddress || !_options.fqn)) {
         grunt.fail.fatal('Missing required attributes: seleniumAddress and/or FQN.');
     }
         
@@ -17,6 +17,7 @@ module.exports = function (grunt, options) {
             debug: false,
             coverageDir: '<%= paths.tmp %>/results/protractor-coverage',
             args: {
+                directConnect: _options.directConnect,
                 seleniumAddress: _options.seleniumAddress,
                 resultsDir: '<%= paths.tmp %>/results/protractor',
                 baseUrl: 'http://'+_options.fqn+':<%= connect.options.port %>/',

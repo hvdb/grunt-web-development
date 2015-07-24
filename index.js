@@ -88,17 +88,27 @@ function GruntWebDevelopment(grunt) {
 
     var testAgainstLocalFiles = [].concat(setupTasks, setupTaskDev, prepareTests, localServeTest, postBuildLocalTests);
     var serveLocalFiles = [].concat(setupTasks, setupTaskDev, serveLocal);
+    
+    
     var serveDirectFiles = [].concat(setupTasks, serveDirect)
     var testDirectFiles = [].concat(setupTasks, prepareTests, serveDirectTest, postBuildLocalTests)
+    var testAgainstDistFiles = [].concat(setupTasks, prepareTests, usemin, distTest, postBuildTests);
+    var serveDistFiles = [].concat(setupTasks, usemin, serveDist);
 
     //Build all and run tests.
     grunt.registerTask('gwd-test-dist', testAgainstDistFiles);
     grunt.registerTask('gwd-serve-dist', serveDistFiles);
+    
     grunt.registerTask('gwd-serve-dev', serveLocalFiles);
     grunt.registerTask('gwd-test-dev', testAgainstLocalFiles);
+    
     grunt.registerTask('gwd-serve-direct', serveDirectFiles)
     grunt.registerTask('gwd-test-direct', testDirectFiles)
-
+    
+    grunt.registerTask('gwd-test-direct-dist', testAgainstDistFiles);
+    grunt.registerTask('gwd-serve-direct-dist', serveDistFiles);
+    
+    
     return {
         configure: function (options) {
             return configurer.configure(options);
