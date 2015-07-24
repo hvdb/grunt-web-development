@@ -19,10 +19,10 @@ module.exports = function (grunt, options) {
     // 2. add the sources and test
     var files = [];
     files = files.concat([
-        '<%= config.paths.bowerComponentsDirectory %>/jquery/jquery.js',
-        '<%= config.paths.bowerComponentsDirectory %>/angular/*.min.js',
-        '<%= config.paths.bowerComponentsDirectory %>/angular-mocks/*.js',
-        '<%= config.paths.bowerComponentsDirectory %>/angular-*/*.min.js',
+        '<%= paths.bowerComponentsDirectory %>/jquery/jquery.js',
+        '<%= paths.bowerComponentsDirectory %>/angular/*.min.js',
+        '<%= paths.bowerComponentsDirectory %>/angular-mocks/*.js',
+        '<%= paths.bowerComponentsDirectory %>/angular-*/*.min.js',
         'test/mocks/**/*.js', // all mock data.
         appDirectory + '/*.module.js', // contains the angular.module('name', [deps]) which is required before using it.
         appDirectory + '/**/*.module.js', // contains the angular.module('name', [deps]) which is required before using it.
