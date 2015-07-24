@@ -7,15 +7,17 @@ module.exports = function (grunt, options) {
     var sourceDirectory = _options.sourceDirectory || 'js'
 
     var htmlPath;
-    if (_options.srcDirectory) {
-        htmlPath = appDirectory + '/' + _options.srcDirectory;
+    if (_options.sourceDirectory) {
+        htmlPath = appDirectory + '/' + _options.sourceDirectory;
     } else {
         htmlPath = appDirectory + '/partials'
     }
 
     return {
         scripts: {
-            files: ['<%= config.paths.base %>/' + appDirectory + '/' + sourceDirectory + '/**/*.js', '<%= config.paths.base %>/' + htmlPath + '**/*.html'],
+            files: ['<%= paths.base %>/' + appDirectory + '/' + sourceDirectory + '/**/*.js', '<%= paths.base %>/' + htmlPath + '/**/*.html'],
+            options: { livereload: true }
+
         }
     };
 };
