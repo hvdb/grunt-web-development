@@ -1,6 +1,6 @@
 {
   "name": "grunt-web-development",
-  "version": "0.0.25",
+  "version": "0.0.26",
   "description": "Description.",
   "main": "index.js",
   "scripts": {
