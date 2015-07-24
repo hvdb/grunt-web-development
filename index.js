@@ -96,17 +96,17 @@ function GruntWebDevelopment(grunt) {
     var serveDistFiles = [].concat(setupTasks, usemin, serveDist);
 
     //Build all and run tests.
+    grunt.registerTask('gwd-test-nw-dist', testAgainstDistFiles);
+    grunt.registerTask('gwd-serve-nw-dist', serveDistFiles);
+    
+    grunt.registerTask('gwd-serve-nw', serveLocalFiles);
+    grunt.registerTask('gwd-test-nw', testAgainstLocalFiles);
+    
+    grunt.registerTask('gwd-serve', serveDirectFiles)
+    grunt.registerTask('gwd-test', testDirectFiles)
+    
     grunt.registerTask('gwd-test-dist', testAgainstDistFiles);
     grunt.registerTask('gwd-serve-dist', serveDistFiles);
-    
-    grunt.registerTask('gwd-serve-dev', serveLocalFiles);
-    grunt.registerTask('gwd-test-dev', testAgainstLocalFiles);
-    
-    grunt.registerTask('gwd-serve-direct', serveDirectFiles)
-    grunt.registerTask('gwd-test-direct', testDirectFiles)
-    
-    grunt.registerTask('gwd-test-direct-dist', testAgainstDistFiles);
-    grunt.registerTask('gwd-serve-direct-dist', serveDistFiles);
     
     
     return {

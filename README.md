@@ -52,11 +52,11 @@ sourceDirectory: Name of the directory where the sources live in. For new style 
 
 start with grunt (and then one of these:)
 
-gwd-serve-direct //Serve local js files  
-gwd-test-direct //Test against local js files  
+gwd-serve //Serve local js files  
+gwd-test //Test against local js files  
 
-gwd-serve-direct-dist //Serve the files after concat, ngminify, ngannotate etc.  
-gwd-test-direct-dist //Concat/ngminify etc and then test.  
+gwd-serve-dist //Serve the files after concat, ngminify, ngannotate etc.  
+gwd-test-dist //Concat/ngminify etc and then test.  
 
 ##What does it do?
 
@@ -106,10 +106,10 @@ When you want to test/serve based on the build structure run the direct command!
 ```
 
 ## Then you can use the following commands:  
-gwd-serve-dist  
-gwd-test-dist  
-gwd-test-dev  
-gwd-serve-dev 
+gwd-serve-nw-dist  
+gwd-test-nw-dist  
+gwd-test-nw  
+gwd-serve-nw 
 
 
 ##TODO
