@@ -10,9 +10,18 @@ function GruntWebDevelopment(grunt) {
     var setupTasks = [
         'clean',
         'bower-install-simple',
-        'fileblocks:gruntWebDevelopment',
-        'copy:appRunFiles'
+        'copy:appRunFiles',
+        'copy:img',
+        'copy:theGuideStyles'
     ];
+
+    var setupTaskDist = [
+        'fileblocks:gruntWebDevelopmentDist',
+    ]
+
+    var setupTaskDev = [
+        'fileblocks:gruntWebDevelopmentDev',
+    ]
 
     var prepareTests = [
         'jshint',
@@ -24,8 +33,8 @@ function GruntWebDevelopment(grunt) {
         'ngtemplates',
         'concat:generated',
         'ngAnnotate',
-        
-    //'cssmin:generated',
+
+        'cssmin:generated',
         'uglify:generated',
 
         'filerev:gruntWebDevelopment',
@@ -51,28 +60,44 @@ function GruntWebDevelopment(grunt) {
         'connect:dev'
     ];
 
+
+    var serveDirect = [
+        'portPick',
+        'connect:direct:keepalive:open'
+    ];
+
+
+    var serveDirectTest = [
+        'portPick',
+        'connect:direct'
+    ];
+
     var postBuildLocalTests = [
         'instrument',
-        'protactor_coverage',
-        'make_report'
+        'protractor_coverage',
+        'makeReport'
     ]
-    
+
     var serveLocal = [
         'portPick',
         'connect:dev:keepalive:open'
     ]
 
-    var testAgainstDistFiles = [].concat(setupTasks, prepareTests, usemin, distTest, postBuildTests);
-    var serveDistFiles = [].concat(setupTasks, usemin, serveDist);
+    var testAgainstDistFiles = [].concat(setupTasks, setupTaskDist, prepareTests, usemin, distTest, postBuildTests);
+    var serveDistFiles = [].concat(setupTasks, setupTaskDist, usemin, serveDist);
 
-    var testAgainstLocalFiles = [].concat(setupTasks, prepareTests, localServeTest, postBuildLocalTests);
-    var serveLocalFiles = [].concat(setupTasks, serveLocal);
+    var testAgainstLocalFiles = [].concat(setupTasks, setupTaskDev, prepareTests, localServeTest, postBuildLocalTests);
+    var serveLocalFiles = [].concat(setupTasks, setupTaskDev, serveLocal);
+    var serveDirectFiles = [].concat(setupTasks, serveDirect)
+    var testDirectFiles = [].concat(setupTasks, prepareTests, serveDirectTest, postBuildLocalTests)
 
     //Build all and run tests.
     grunt.registerTask('gwd-test-dist', testAgainstDistFiles);
     grunt.registerTask('gwd-serve-dist', serveDistFiles);
     grunt.registerTask('gwd-serve-dev', serveLocalFiles);
     grunt.registerTask('gwd-test-dev', testAgainstLocalFiles);
+    grunt.registerTask('gwd-serve-direct', serveDirectFiles)
+    grunt.registerTask('gwd-test-direct', testDirectFiles)
 
     return {
         configure: function (options) {

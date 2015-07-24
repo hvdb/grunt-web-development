@@ -1,13 +1,29 @@
 'use strict';
 
 /** copy configuration. */
-module.exports = function () {
+module.exports = function (grunt, options) {
+    var _options = options.gwd || {};
+    var appDirectory = _options.appDirectory || 'app';
+
     return {
-         appRunFiles: {
+        appRunFiles: {
             expand: true,
-            flatten: true, 
-            cwd: '<%= paths.base %>/app',
+            flatten: true,
+            cwd: '<%= paths.base %>/' + appDirectory,
             src: '*.js',
+            dest: '<%= paths.dist %>'
+        },
+        img : {
+            expand:true,
+            flatten:true,
+            cwd: '<%= paths.base %>/' + appDirectory + '/img',
+            src: '*',
+            dest: '<%= paths.dist %>/img'
+        },
+        theGuideStyles: {
+            expand: true,
+            cwd: '<%= paths.bowerComponentsDirectory %>/the-guide-styles',
+            src: ['img/**', 'fonts/**'],
             dest: '<%= paths.dist %>'
         }
     };
