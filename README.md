@@ -48,6 +48,9 @@ You need to provide two extra parameters:
 appDirectory: Name of the root directory where the application lives in. This should have the value: 'src'  
 sourceDirectory: Name of the directory where the sources live in. For new style this is 'app'  
 
+
+!! In your .bowerrc please set the lib directory to: bower_components  
+
 ##Available grunt options:
 
 start with grunt (and then one of these:)
