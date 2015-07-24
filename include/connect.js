@@ -51,11 +51,11 @@ module.exports = function (grunt, options) {
                 middleware: function (connect) {
                     var paths = grunt.config.get('paths');
                     return [
-                        connect().use('/', connect.static(paths.base + '/' + appDirectory)),
-                        connect().use('/mocks', connect.static(paths.base + '/test/mocks')),
-                        connect().use('/', connect.static(paths.base + '/test/protractor')),
+                        connect().use('/lib', connect.static(paths.bowerComponentsDirectory)),
                         connect().use('/' + sourceDirectory, connect.static(paths.tmp + '/instrumented/' + appDirectory + '/' + sourceDirectory)),
-                        connect().use('/lib', connect.static(paths.bowerComponentsDirectory))
+                        connect().use('/', connect.static(paths.base + '/' + appDirectory)),
+                        connect().use('/', connect.static(paths.base + '/test/protractor')),
+                        connect().use('/mocks', connect.static(paths.base + '/test/mocks'))
                     ];
                 }
             }

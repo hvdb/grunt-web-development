@@ -6,7 +6,8 @@ module.exports = function (grunt, options) {
     var appDirectory = _options.appDirectory || 'app';
     var sourceDirectory = _options.sourceDirectory || 'js'
     return {
-        files: '<%= paths.base %>/' + appDirectory + '/' + sourceDirectory + '/**/*.js',
+        cwd: '<%= paths.base %>',
+        files: appDirectory + '/' + sourceDirectory + '/**/*.js',
         options: {
             basePath: '<%= paths.tmp %>/instrumented',
             lazy: false
