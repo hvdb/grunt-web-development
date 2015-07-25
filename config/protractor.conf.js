@@ -2,7 +2,7 @@ var grunt = require('grunt');
 var path = require('path');
 var basePath = path.resolve();
 var allScriptsTimeout = 11000;
-var paths =  grunt.config.get('paths');
+var paths = grunt.config.get('paths');
 
 exports.config = {
     allScriptsTimeout: allScriptsTimeout,
@@ -24,25 +24,33 @@ exports.config = {
         browser.getCapabilities().then(function (caps) {
             browser.params.browser = caps.get('browserName');
 
-            var directory =  path.resolve('.tmp/results/protractor/' + browser.params.browser);
+            var directory = path.resolve('.tmp/results/protractor/' + browser.params.browser);
             mkdirp(directory, function (err) {
                 if (err) {
                     throw new Error('Could not create directory ' + directory);
                 }
             });
+
+            var ScreenShotReporter = require('protractor-screenshot-reporter');
+            jasmine.getEnv().addReporter(new ScreenShotReporter({
+                baseDirectory: ".tmp/results/protractor/screenshots", takeScreenShotsOnlyForFailedSpecs: true
+            }));
+
+
             jasmine.getEnv().addReporter(new jasmine.JUnitXmlReporter(directory, true, true));
             browser.driver.manage().window().maximize();
             browser.manage().timeouts().setScriptTimeout(allScriptsTimeout);
         });
 
+
     },
     onCleanUp: function () {
     },
-    beforeLaunch: function() {
+    beforeLaunch: function () {
     },
     afterLaunch: function () {
-        var resultsBaseDir =  '.tmp/results/protractor/';
-        grunt.file.expand({filter: 'isDirectory', cwd: resultsBaseDir}, '*').forEach(function (dir) {
+        var resultsBaseDir = '.tmp/results/protractor/';
+        grunt.file.expand({ filter: 'isDirectory', cwd: resultsBaseDir }, '*').forEach(function (dir) {
             var mergedAndUpdatedContent = '<?xml version="1.0"?>\n<testsuites>\n';
             var errors = 0;
             var tests = 0;
