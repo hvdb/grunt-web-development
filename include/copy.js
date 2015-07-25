@@ -2,6 +2,7 @@
 
 /** copy configuration. */
 module.exports = function (grunt, options) {
+    var path = require('path');
     var _options = options.gwd || {};
     var appDirectory = _options.appDirectory || 'app';
 
@@ -25,6 +26,12 @@ module.exports = function (grunt, options) {
             cwd: '<%= paths.bowerComponentsDirectory %>/the-guide-styles',
             src: ['img/**', 'fonts/**'],
             dest: '<%= paths.dist %>'
+        },
+        configFiles: {
+            expand: true,
+            cwd: path.join(__dirname, '..'),
+            src: ['config/protractor.conf.js', 'config/karma.conf.js', 'config/.jshintrc'],
+            dest: '<%= paths.tmp %>'
         }
     };
 };

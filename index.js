@@ -12,7 +12,9 @@ function GruntWebDevelopment(grunt) {
         'bower-install-simple',
         'copy:appRunFiles',
         'copy:img',
-        'copy:theGuideStyles'
+        'copy:theGuideStyles',
+        'copy:configFiles',
+        'wiredep'
     ];
 
     var setupTaskDist = [

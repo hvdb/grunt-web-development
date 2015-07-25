@@ -16,37 +16,27 @@ exports.config = {
             maxInstances: 5
         }
     ],
-
     onPrepare: function () {
-        require('jasmine-reporters');
-        mkdirp = require('mkdirp')
-        // Store the name of the browser that's currently being used.
-        browser.getCapabilities().then(function (caps) {
-            browser.params.browser = caps.get('browserName');
-
-            var directory = path.resolve('.tmp/results/protractor/' + browser.params.browser);
+        var jasmineReporters = require('node_modules/grunt-web-development/node_modules/jasmine-reporters');
+        mkdirp = require('node_modules/grunt-web-development/node_modules/mkdirp')
+        // returning the promise makes protractor wait for the reporter config before executing tests
+        return browser.getProcessedConfig().then(function (config) {
+            // you could use other properties here if you want, such as platform and version
+            var browserName = config.capabilities.browserName;
+            var directory = path.resolve('.tmp/results/protractor/' + browserName);
             mkdirp(directory, function (err) {
                 if (err) {
                     throw new Error('Could not create directory ' + directory);
                 }
             });
-
-            var ScreenShotReporter = require('protractor-screenshot-reporter');
+            var ScreenShotReporter = require('node_modules/grunt-web-development/node_modules/protractor-html-screenshot-reporter');
             jasmine.getEnv().addReporter(new ScreenShotReporter({
-                baseDirectory: ".tmp/results/protractor/screenshots", takeScreenShotsOnlyForFailedSpecs: true
+                baseDirectory: ".tmp/results/protractor/screenshots", takeScreenShotsOnlyForFailedSpecs: true, takeScreenShotsForSkippedSpecs: true
             }));
-
-
             jasmine.getEnv().addReporter(new jasmine.JUnitXmlReporter(directory, true, true));
             browser.driver.manage().window().maximize();
             browser.manage().timeouts().setScriptTimeout(allScriptsTimeout);
         });
-
-
-    },
-    onCleanUp: function () {
-    },
-    beforeLaunch: function () {
     },
     afterLaunch: function () {
         var resultsBaseDir = '.tmp/results/protractor/';

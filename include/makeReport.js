@@ -6,7 +6,7 @@ module.exports = function () {
         src: '<%=paths.tmp%>/results/protractor-coverage/*.json',
         options: {
             type: 'lcov',
-            dir: '<%= paths%>/results/protractor-coverage',
+            dir: '<%= paths.tmp %>/results/protractor-coverage',
             print: 'detail'
         }
     };

@@ -2,6 +2,7 @@
 
 
 ##How to use:  
+Put this in a Gruntfile.js
 ```javascript
 
 'use strict';
@@ -15,10 +16,16 @@ module.exports = function (grunt) {
     spectingularConfigurer.init(gruntWebDevelopmentConfig);
 };
 ```
+Add the following to your package.json.  
+Make sure you remove all other packages, or at least the one used by this configurer.
 
+```json  
+"gunt-web-development" : "^0.0.35",
+"spectingular-configurer": "^1.0.1"
+```
 
 ##Basic config that should be provided  
-make an include folder and place a gwd.js file.  
+make an include folder and place a gwd.js file in it with the following config.  
 include\gwd.js  
 
 
@@ -52,17 +59,17 @@ sourceDirectory: Name of the directory where the sources live in. For new style 
 
 start with grunt (and then one of these:)
 
-gwd-serve //Serve local js files  
-gwd-test //Test against local js files  
+**gwd-serve** :Serve local js files  
+**gwd-test** :Test against local js files  
 
 You can also package all files.
 Please do the following:
 
-gwd-serve-dist //Serve the files after concat, ngminify, ngannotate etc.  
-gwd-test-dist //Concat/ngminify etc and then test.  
+**gwd-serve-dist** //Serve the files after concat, ngminify, ngannotate etc.  
+**gwd-test-dist** //Concat/ngminify etc and then test.  
 
 Change your html to have the following:
-Put the <!-- build --> tags around the script includes.
+Basically put  <!-- build --> tags around the script includes.
 ```
 <!-- build:css  css/the-guide-styles-responsive.min.css-->
         //Put css script includes
@@ -94,8 +101,23 @@ serve: serve the files in the same way as the build does it.
 Test: Test the same way as the build does it.  
 
 It will run karma and protractor tests.
+The karma files are included with wiredep, so all bower_component files are available.  
+Mocks needs to be loaded with mocks/file.js  
+
+
+##results
+
+Results are stored in .tmp/results.  
+Here you can find karma/jshint/protractor results.  
+
+You can check protractor by starting the html: .tmp/results/protractor/screenshots/report.html  
+This will give an overview of the tests and option to show screenshot on failed test.
 
 #The following is not yet recommended!
+
+You can use it locally. But not in the build.
+
+
 ---
 This helps you with making the script includes.
 You don't need to insert them again.
@@ -107,21 +129,13 @@ Currently the build is not support this.
 When you want to test/serve based on the build structure run the direct command!!
 ```
 		<!-- build:css  css/the-guide-styles-responsive.min.css-->
-        <!-- fileblock:css theGuideStyles -->
-        <!-- endfileblock -->
+        <!-- bower:css -->
+        <!-- endbower -->
         <!-- endbuild -->
         
-        <!-- build:js js/lib/jquery.min.js -->
-        <!-- fileblock:js jquery -->
-        <!-- endfileblock -->
-        <!-- endbuild -->
-        <!-- build:js js/lib/angular.min.js -->
-        <!-- fileblock:js angular -->
-        <!-- endfileblock -->
-        <!-- endbuild -->
         <!-- build:js js/lib/deps.min.js -->
-        <!-- fileblock:js deps -->
-        <!-- endfileblock -->
+        <!-- bower:js -->
+        <!-- endbower -->
         <!-- endbuild -->
         
         <!-- build:js js/app.min.js -->

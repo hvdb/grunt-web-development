@@ -8,7 +8,7 @@ module.exports = function (grunt, options) {
     var path = require('path');
     return {
         options: {
-            jshintrc: path.join(__dirname, '..', '/config/.jshintrc'),
+            jshintrc: '<%= paths.tmp %>/config/.jshintrc',
             reporter: require('jshint-junit-reporter'),
             reporterOutput: '<%= paths.tmp %>/results/jshint/jshint.xml'
         },

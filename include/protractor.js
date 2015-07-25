@@ -1,4 +1,4 @@
-odule.exports = function (grunt, options) {
+module.exports = function (grunt, options) {
     var path = require('path');
     var _options = options.gwd || {};
 
@@ -7,7 +7,7 @@ odule.exports = function (grunt, options) {
     }
     return {
         options: {
-            configFile: path.join(__dirname, '..', '/config/protractor.conf.js'),
+            configFile: '<%= paths.tmp %>/config/protractor.conf.js',
             keepAlive: false,
             noColor: false,
             args: {
@@ -16,12 +16,38 @@ odule.exports = function (grunt, options) {
                 baseUrl: 'http://' + _options.fqn + ':<%= connect.options.port %>/',
                 specs: [
                     '<%= paths.base %>/test/protractor/**/*spec.js'
-                ]
+                ],
+                onPrepare: function () {
+                    require('jasmine-reporters');
+                    mkdirp = require('mkdirp')
+                    // Store the name of the browser that's currently being used.
+                    browser.getCapabilities().then(function (caps) {
+                        browser.params.browser = caps.get('browserName');
+
+                        var directory = path.resolve('<%= paths.tmp %>/results/protractor/' + browser.params.browser);
+                        mkdirp(directory, function (err) {
+                            if (err) {
+                                throw new Error('Could not create directory ' + directory);
+                            }
+                        });
+
+                        var ScreenShotReporter = require('protractor-screenshot-reporter');
+                        jasmine.getEnv().addReporter(new ScreenShotReporter({
+                            baseDirectory: "<%= paths.tmp %>/results/protractor/screenshots", takeScreenShotsOnlyForFailedSpecs: true
+                        }));
+
+
+                        jasmine.getEnv().addReporter(new jasmine.JUnitXmlReporter(directory, true, true));
+                        browser.driver.manage().window().maximize();
+                        browser.manage().timeouts().setScriptTimeout(allScriptsTimeout);
+                    });
+
+                }
             }
         },
         e2e: {
             keeaplive: true,
-            configFile: path.join(__dirname, '..', '/config/protractor.conf.js'),
+            configFile: '<%= paths.tmp %>/config/protractor.conf.js',
         }
     };
 };
