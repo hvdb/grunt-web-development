@@ -21,12 +21,6 @@ module.exports = function (grunt, options) {
             src: '*',
             dest: '<%= paths.dist %>/img'
         },
-        theGuideStyles: {
-            expand: true,
-            cwd: '<%= paths.bowerComponentsDirectory %>/the-guide-styles',
-            src: ['img/**', 'fonts/**'],
-            dest: '<%= paths.dist %>'
-        },
         configFiles: {
             expand: true,
             cwd: path.join(__dirname, '..'),

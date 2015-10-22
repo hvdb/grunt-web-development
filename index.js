@@ -5,7 +5,20 @@ function GruntWebDevelopment(grunt) {
     process.chdir(__dirname);
     require('load-grunt-tasks')(grunt);
     process.chdir(parentcwd);
-    var configurer = require('spectingular-configurer')(grunt, __dirname);
+
+    require('load-grunt-config')(grunt, {v
+        data: {
+            paths: {
+                src: 'src',
+                scripts: 'src/app',
+                test: 'test',
+                coverage: 'coverage',
+                tmp: '.tmp'
+            },
+            fqdn: grunt.option('fqdn')
+        }
+    });
+
 
     var setupTasks = [
         'clean',
@@ -87,6 +100,8 @@ function GruntWebDevelopment(grunt) {
         'watch'
     ]
 
+
+
     var testAgainstNwDistFiles = [].concat(setupTasks, setupTaskDist, prepareTests, usemin, distTest, postBuildTests);
     var serveDistNwFiles = [].concat(setupTasks, setupTaskDist, usemin, serveDist);
 
@@ -113,11 +128,6 @@ function GruntWebDevelopment(grunt) {
     grunt.registerTask('gwd-serve-dist', serveDistFiles);
     
     
-    return {
-        configure: function (options) {
-            return configurer.configure(options);
-        }
-    }
 }
 
 module.exports = GruntWebDevelopment;

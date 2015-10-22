@@ -22,10 +22,6 @@ module.exports = function (config) {
 
         frameworks: ['jasmine'],
         files: files,
-        exclude: [
-            'app/js/**/generated/**/*.js', // assume that generated javascript will be placed in a directory named generated.
-            'app/partials**/generated/**/*.html' // assume that generated partials will be placed in a directory named generated.
-        ],
         plugins: [
             'karma-jasmine',
             'karma-junit-reporter',
